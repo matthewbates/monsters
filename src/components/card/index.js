@@ -1,8 +1,7 @@
 import "./card.styles.css";
 import React from "react";
 
-export default function Card() {
-  const { monster } = this.props;
+const Card = ({ monster }) => {
   return (
     <div className="card-container">
       <img
@@ -13,4 +12,6 @@ export default function Card() {
       <p>monster.{monster.email}</p>
     </div>
   );
-}
+};
+
+export default Card;

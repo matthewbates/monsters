@@ -61,27 +61,32 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import CardList from "./components/card-list";
 import SearchBox from "./components/search-box";
+import useMonsters from "./components/hooks/useMonsters";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com/users";
 
-export default function App() {
+const App = () => {
   const [monsters, setMonsters] = useState([]);
   const [search, setSearch] = useState("");
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
   useEffect(() => {
     fetch(BASE_URL)
       .then((r) => r.json())
       .then((users) => setMonsters(users));
-  });
+  }, []);
+
+  useEffect(() => {
+    const newFilteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase()?.includes(search);
+    });
+    setFilteredMonsters(newFilteredMonsters);
+  }, [monsters, search]);
 
   const handleOnChange = (e) => {
     const searchField = e.target.value.toLocaleLowerCase();
     setSearch(searchField);
   };
-
-  const filteredMonsters = monsters.filter((monster) => {
-    return monster.name.toLocaleLowerCase().includes(search);
-  });
 
   return (
     <div className="App">
@@ -94,4 +99,6 @@ export default function App() {
       <CardList monsters={filteredMonsters} />
     </div>
   );
-}
+};
+
+export default App;
