@@ -1,14 +1,18 @@
 .card-list {
-  width: 85vw;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
   margin: 0 auto;
-  display: grid;
+
+  /* margin: 0 auto; */
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 20px; */
 }
 
 .card-container {
-  display: flex;
-  flex-direction: column;
   background-color: #95dada;
   border: 1px solid grey;
   border-radius: 5px;
